@@ -14,7 +14,7 @@ function $(id){
     })
 
     $('password2').addEventListener('blur', () => {
-        checkPwdQR()
+        checkPwdDB()
     })
 
     $('btn').addEventListener('click', () => {
@@ -68,7 +68,7 @@ function checkPwd() {
         return;
     }
     // 2.长度必须为8——25位
-    if(userPwd.length <8 || userPwd.length > 25){
+    if(userPwd.length < 8 || userPwd.length > 25){
         error.innerText = "密码长度为8~25位";
         // 遇到错误就终止，返回
         return;
@@ -76,38 +76,38 @@ function checkPwd() {
 }
 
 // 检查二次口令
-function checkPwdQR() {
+function checkPwdDB() {
     // 获取错误框
     let error = $('error')
     // 获取输入的卡号
     let userPwd = $("password").value;
-    let userPwdQR = $("password2").value;
+    let userPwdDB = $("password2").value;
     // 将错误框内容置空
     error.innerText = "";
     // 判断密码是否为空或者为空字符串
-    if(userPwdQR == "" || userPwdQR == null){
+    if(userPwdDB == "" || userPwdDB == null){
         error.innerText = "确认密码不能为空";
         // 密码为空直接返回
         return;
     }
     // 判断两次密码是否一致
-    if(userPwdQR != userPwd){
+    if(userPwdDB != userPwd){
         error.innerText = "输入的两次密码不一致";
         // 密码不一致直接返回
         return;
     }
     // 返回成功
-    return userPwdQR;
+    return userPwdDB;
 }
 
 function login() {
     // 再次校验
     let cardCode = checkCardCode()
-    let password = checkPwdQR()
+    let password = checkPwdDB()
     // 判断用户名密码是否校验成功
     if (cardCode && password) {
         // 判断用户名和密码是否正确
-        if (cardCode === 'admin' && password === '985211') {
+        if (cardCode === 'suser' || cardCode === 'admin' && password === '12345678') {
             // 跳转到成功页面
             location.href = `success.html?username=${cardCode}&password=${password}`
         } else {
@@ -115,6 +115,4 @@ function login() {
             $('error').innerText = '密码或卡号错误！'
         }
     }
-
-
 }

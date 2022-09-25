@@ -5,6 +5,29 @@
     <title>Success</title>
 </head>
 <body>
-  <h1>成功登录</h1>
+    <span id="id">{{username}}</span><span>，欢迎您</span>
 </body>
+<script src="js/success.js"></script>
+<!--<script>
+    function $(id) {
+        return document.getElementById(id)
+    }
+
+    function getQueryVariable(variable) {
+        let query = window.location.search.substring(1);
+        let vars = query.split("&");
+        for (let i = 0; i < vars.length; i++) {
+            let pair = vars[i].split("=");
+            if(pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return false;
+    }
+
+    (function () {
+        $('id').innerText = getQueryVariable('username')
+    })()
+
+</script>-->
 </html>
